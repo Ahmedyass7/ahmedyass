@@ -1,0 +1,34 @@
+<div class="carousel-container">
+  
+  <button class="nav-btn prev" (click)="prev()">❮</button>
+
+  
+  <div class="review-wrapper">
+    <div class="review-card shadow-sm" *ngFor="let comment of visibleComments">
+      
+      <div class="stars mb-2">
+        <ng-container *ngFor="let star of [1,2,3,4,5]">
+          <i
+            class="bi"
+            [ngClass]="{
+              'bi-star-fill': star <= comment.stars,
+              'bi-star': star > comment.stars
+            }"
+          ></i>
+        </ng-container>
+      </div>
+
+      
+      <h6 class="fw-bold mb-1">
+        {{ comment.name }}
+        <i class="bi bi-check-circle-fill verified"></i>
+      </h6>
+
+      
+      <p>{{ comment.text }}</p>
+    </div>
+  </div>
+
+  
+  <button class="nav-btn next" (click)="next()">❯</button>
+</div>

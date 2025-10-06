@@ -1,0 +1,47 @@
+<app-hero-section></app-hero-section>
+<app-hero-baner></app-hero-baner>
+
+<div class="text-center container new-arrival">
+
+  
+  <div class="m-5 text-center">
+    <app-text-header textContent="New Arrival" textColor="black"></app-text-header>
+  </div>
+
+  <div class="row g-1 flex-wrap mb-4">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let product of newArrivalProducts; trackBy: trackById">
+      <app-product-card [product]="product" (buyAction)="handleAddToCart($event)"></app-product-card>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <app-custom-button backgroundColor="white" textColor="black" content="View all"></app-custom-button>
+  </div>
+  <hr />
+
+  
+  <div class="m-5 text-center">
+    <app-text-header textContent="Top Selling" textColor="black"></app-text-header>
+  </div>
+
+  <div class="row g-1 flex-wrap mb-4">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let product of topSellingProducts; trackBy: trackById">
+      <app-product-card [product]="product" (buyAction)="handleAddToCart($event)"></app-product-card>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <app-custom-button backgroundColor="white" textColor="black" content="View all"></app-custom-button>
+  </div>
+  <hr />
+
+  
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-8">
+      <app-comment-box></app-comment-box>
+    </div>
+  </div>
+
+</div>
+
+<app-footer-banner></app-footer-banner>

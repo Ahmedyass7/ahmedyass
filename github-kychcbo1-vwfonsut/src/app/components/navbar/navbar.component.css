@@ -1,0 +1,40 @@
+
+.navbar, .navbar a, .navbar .nav-link, .navbar-brand, .icon-link {
+  font-family: 'Arial', sans-serif;
+  color: #333; 
+  cursor: pointer;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active,
+.navbar-brand:hover {
+  color: #007bff; 
+}
+
+.icon-link i {
+  font-size: 1.2rem;
+  color: #333; 
+  cursor: pointer;
+}
+
+.icon-link:hover i {
+  color: #007bff; 
+}
+
+
+.navbar .nav-link {
+  margin-right: 1rem;
+}
+
+.navbar .form-control {
+  border-radius: 50px;
+  padding: 0.4rem 1rem;
+}
+
+.navbar .dropdown-menu {
+  font-family: 'Arial', sans-serif;
+}
+
+.navbar .dropdown-item:hover {
+  background-color: #f0f0f0;
+}

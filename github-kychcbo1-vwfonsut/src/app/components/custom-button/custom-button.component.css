@@ -1,0 +1,84 @@
+button {
+  padding: 16px 54px;
+  border-radius: 50px;
+  border: 2px solid transparent;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+button[style*="background-color: black"],
+button[style*="background: black"] {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%) !important;
+  color: white;
+  border: 2px solid transparent;
+}
+
+button[style*="background-color: black"]:hover,
+button[style*="background: black"]:hover {
+  background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%) !important;
+  border-color: #667eea;
+}
+
+
+button[style*="background-color: white"],
+button[style*="background: white"] {
+  background: linear-gradient(145deg, #ffffff, #f8f9fa) !important;
+  color: #2c3e50 !important;
+  border: 2px solid #e9ecef;
+}
+
+button[style*="background-color: white"]:hover,
+button[style*="background: white"]:hover {
+  background: linear-gradient(145deg, #f8f9fa, #e9ecef) !important;
+  border-color: #667eea;
+  color: #667eea !important;
+}
+
+
+@media (max-width: 768px) {
+  button {
+    padding: 12px 32px;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  button {
+    padding: 10px 24px;
+    font-size: 0.75rem;
+  }
+}
