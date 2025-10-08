@@ -1,0 +1,26 @@
+<div class="product-card card h-100 shadow-sm">
+  <a [routerLink]="['/product', product.id]">
+    <img [src]="product.imagePath[0]" [alt]="product.name" class="card-img-top" />
+  </a>
+
+  <div class="card-body d-flex flex-column">
+    <h3 class="card-title">{{ product.name }}</h3>
+    <p class="price">${{ product.price }}</p>
+
+    
+    <div class="buttons-container mt-auto">
+      <button class="btn btn-details" [routerLink]="['/product', product.id]">
+        View Details
+      </button>
+      
+      <div class="action-buttons">
+        <button class="btn btn-cart" (click)="addToCart()">
+          Add to Cart
+        </button>
+        <button class="btn btn-like" (click)="toggleFavorite()">
+          <i class="fas fa-heart"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

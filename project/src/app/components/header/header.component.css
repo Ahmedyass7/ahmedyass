@@ -1,0 +1,9 @@
+.header p span {
+  text-decoration:underline;
+}
+
+@media (max-width: 576px) {
+  .header p {
+    font-size: 12px !important;
+  }
+}

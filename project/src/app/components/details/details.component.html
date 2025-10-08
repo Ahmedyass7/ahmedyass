@@ -1,0 +1,65 @@
+<div class="details-container" *ngIf="product">
+
+  <div class="product-section">
+    <div class="image-box">
+      <img [src]="product.image" [alt]="product.title" />
+    </div>
+    <div class="info-box">
+      <h2>{{ product.title }}</h2>
+      <p class="price">${{ product.price }}</p>
+      <p class="desc">{{ product.description }}</p>
+
+
+      <div class="options">
+        <h4>Choose Color:</h4>
+        <div class="color-options">
+          <button *ngFor="let c of colors"
+                  [style.background]="c"
+                  [class.active]="c === selectedColor"
+                  (click)="selectColor(c)">
+          </button>
+        </div>
+      </div>
+
+
+      <div class="options">
+        <h4>Choose Size:</h4>
+        <select [(ngModel)]="selectedSize">
+          <option *ngFor="let s of sizes" [value]="s">{{ s }}</option>
+        </select>
+      </div>
+
+      <button class="buy-btn">Add to Cart</button>
+    </div>
+  </div>
+
+
+  <div class="reviews-section">
+    <h3>Customer Reviews</h3>
+    <div class="review-card" *ngFor="let c of comments">
+      <div class="review-header">
+        <strong>{{ c.name }}</strong>
+        <div class="stars">
+          <span *ngFor="let s of getStars(c.rating)" [class.filled]="s <= c.rating">★</span>
+        </div>
+      </div>
+      <p>{{ c.text }}</p>
+    </div>
+  </div>
+
+
+  <div class="related-section">
+    <h3>You might also like</h3>
+    <div class="related-grid">
+      <div class="related-card" *ngFor="let rp of youMightLike">
+        <a [routerLink]="['/product', rp.id]">
+          <img [src]="rp.image" [alt]="rp.title" />
+        </a>
+        <div class="related-info">
+          <h4>{{ rp.title }}</h4>
+          <p class="price">${{ rp.price }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,156 @@
+<div class="event-reminder-container">
+  <div class="header-section">
+    <h1>Event Reminders</h1>
+    <button class="btn-primary" (click)="toggleAddForm()">
+      {{ showAddForm ? 'Cancel' : 'Add New Event' }}
+    </button>
+    <button class="btn-secondary" (click)="requestNotificationPermission()">
+      Enable Notifications
+    </button>
+  </div>
+
+  <div class="add-event-form" *ngIf="showAddForm">
+    <h2>Create New Event</h2>
+    <form (ngSubmit)="addEvent()">
+      <div class="form-group">
+        <label>Event Title *</label>
+        <input
+          type="text"
+          [(ngModel)]="newEvent.title"
+          name="title"
+          placeholder="Enter event title"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea
+          [(ngModel)]="newEvent.description"
+          name="description"
+          placeholder="Enter event description"
+          rows="3"
+        ></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Start Date & Time *</label>
+          <input
+            type="datetime-local"
+            [(ngModel)]="newEvent.start_date"
+            name="start_date"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>End Date & Time</label>
+          <input
+            type="datetime-local"
+            [(ngModel)]="newEvent.end_date"
+            name="end_date"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Location</label>
+          <input
+            type="text"
+            [(ngModel)]="newEvent.location"
+            name="location"
+            placeholder="Enter location"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Reminder (minutes before)</label>
+          <input
+            type="number"
+            [(ngModel)]="newEvent.reminder_minutes"
+            name="reminder_minutes"
+            min="1"
+            placeholder="30"
+          />
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit">Create Event</button>
+    </form>
+  </div>
+
+  <div class="events-section">
+    <h2>Upcoming Events</h2>
+    <div class="events-list">
+      <div
+        class="event-card"
+        *ngFor="let event of upcomingEvents"
+        [class.completed]="event.is_completed"
+      >
+        <div class="event-header">
+          <h3>{{ event.title }}</h3>
+          <div class="event-actions">
+            <button class="btn-icon" (click)="toggleComplete(event)">
+              {{ event.is_completed ? '✓' : '○' }}
+            </button>
+            <button class="btn-icon delete" (click)="deleteEvent(event.id)">
+              ×
+            </button>
+          </div>
+        </div>
+
+        <p class="event-description" *ngIf="event.description">
+          {{ event.description }}
+        </p>
+
+        <div class="event-details">
+          <div class="detail-item">
+            <span class="icon">📅</span>
+            <span>{{ formatDate(event.start_date) }}</span>
+          </div>
+
+          <div class="detail-item" *ngIf="event.end_date">
+            <span class="icon">🏁</span>
+            <span>{{ formatDate(event.end_date) }}</span>
+          </div>
+
+          <div class="detail-item" *ngIf="event.location">
+            <span class="icon">📍</span>
+            <span>{{ event.location }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="icon">⏰</span>
+            <span>{{ event.reminder_minutes }} min before</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="empty-state" *ngIf="upcomingEvents.length === 0">
+        <p>No upcoming events. Create one to get started!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="events-section">
+    <h2>All Events</h2>
+    <div class="events-list compact">
+      <div
+        class="event-card compact"
+        *ngFor="let event of events"
+        [class.completed]="event.is_completed"
+      >
+        <div class="event-header">
+          <h4>{{ event.title }}</h4>
+          <span class="event-date">{{ formatDate(event.start_date) }}</span>
+        </div>
+      </div>
+
+      <div class="empty-state" *ngIf="events.length === 0">
+        <p>No events found.</p>
+      </div>
+    </div>
+  </div>
+</div>

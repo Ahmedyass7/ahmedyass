@@ -1,0 +1,82 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand title" routerLink="/">Shop.co</a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 ms-5 mt-1 mb-lg-0 d-flex align-items-center">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Shop
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/sale">On sale</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/new">New Arrival</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="goToBrandCategory()">Brand</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/events">Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/calendar">Calendar</a>
+        </li>
+      </ul>
+
+      <form class="d-flex align-items-center" role="search">
+        <input class="form-control me-3 search" type="search" placeholder="Search" aria-label="Search" />
+        <div class="d-flex align-items-center">
+          
+          <a routerLink="/cart" class="me-3 d-block icon-link" title="Go to Cart">
+            <i class="bi bi-cart-fill"></i>
+          </a>
+
+          <div class="dropdown">
+            <a class="icon-link dropdown-toggle" href="#" id="userDropdown" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person-fill"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+              <li *ngIf="!currentUser">
+                <a class="dropdown-item" routerLink="/sign-in">Sign In</a>
+              </li>
+              <li *ngIf="!currentUser">
+                <a class="dropdown-item" routerLink="/sign-up">Sign Up</a>
+              </li>
+              <li *ngIf="currentUser">
+                <span class="dropdown-item-text">{{ userDisplayName }}</span>
+              </li>
+              <li *ngIf="currentUser">
+                <hr class="dropdown-divider" />
+              </li>
+              <li *ngIf="currentUser">
+                <a class="dropdown-item" (click)="signOut()" style="cursor: pointer;">Sign Out</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>

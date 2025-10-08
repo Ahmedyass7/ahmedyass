@@ -1,0 +1,83 @@
+<div class="bg-light p-4 p-md-5 mb-5">
+  <div class="container">
+    
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a routerLink="/" class="text-secondary text-decoration-none">Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Cart</li>
+      </ol>
+    </nav>
+
+    <h1 class="fw-bold mb-4 text-center text-md-start">YOUR CART</h1>
+
+    <div class="row g-4">
+      
+      <div class="col-12 col-lg-8">
+        <div class="card p-3 p-md-4">
+          <ng-container *ngIf="productsCart.length > 0; else emptyCart">
+            <div *ngFor="let pCart of productsCart; trackBy: trackById"
+                 class="cart-item d-flex flex-column flex-sm-row align-items-center justify-content-between border-bottom pb-4 mb-4">
+              <div class="d-flex flex-column flex-sm-row align-items-center text-center text-sm-start mb-3 mb-sm-0 w-100">
+                <img [src]="pCart.imagePath[0]" class="rounded me-0 me-sm-3 mb-2 mb-sm-0" />
+                <div>
+                  <h5 class="fw-semibold">{{ pCart.name }}</h5>
+                  <p class="text-secondary m-0">{{ pCart.availableSizes[0] }}</p>
+                  <p class="text-secondary m-0">{{ pCart.avaliableColor }}</p>
+                  <p class="fw-bold fs-5 mt-2 mb-0">${{ pCart.price }}</p>
+                </div>
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center border border-secondary rounded-full-btn overflow-hidden me-2">
+                  <button class="btn btn-light rounded-0 border-0" (click)="minusProductCount(pCart)">-</button>
+                  <span class="px-3">{{ pCart.payNumber }}</span>
+                  <button class="btn btn-light rounded-0 border-0" (click)="plusProductCount(pCart)">+</button>
+                </div>
+              
+                <button class="btn btn-dark rounded-full-btn d-flex align-items-center justify-content-center ms-2"
+                        (click)="removeProduct(pCart)" title="Remove from cart">
+                  ✖
+                </button>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #emptyCart>
+            <p class="text-center text-secondary">🛒 Your cart is empty</p>
+          </ng-template>
+        </div>
+      </div>
+
+      
+      <div class="col-12 col-lg-4">
+        <div class="card p-3 p-md-4">
+          <h5 class="fw-bold mb-4">Order Summary</h5>
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-secondary">Subtotal</span>
+            <span class="fw-semibold">$ {{ subTotal }}</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-secondary">Discount</span>
+            <span class="fw-semibold text-red-500">-% {{ discount }}</span>
+          </div>
+          <div class="d-flex justify-content-between mb-4">
+            <span class="text-secondary">Delivery Fee</span>
+            <span class="fw-semibold">$ {{ deliveryFee }}</span>
+          </div>
+          <hr />
+          <div class="d-flex justify-content-between fw-bold fs-5 my-3">
+            <span>Total</span>
+            <span>${{ total }}</span>
+          </div>
+          <div class="input-group mb-3">
+            <input id="discountInput" type="number" class="form-control rounded-full-btn p-3"
+                   placeholder="Add promo code" aria-label="Add percentage of discount" #discountInput />
+            <button class="btn btn-dark rounded-full-btn" type="button" style="width: 120px;"
+                    (click)="applayDiscount(discountInput.value)">Apply</button>
+          </div>
+          <button class="btn btn-dark rounded-full-btn w-100 py-3 mt-3">Go to Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

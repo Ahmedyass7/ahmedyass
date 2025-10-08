@@ -1,0 +1,40 @@
+section {
+  background-color: #f2f0f1;
+}
+
+.content {
+  max-width: 577px;
+}
+
+.content h1 {
+  font-weight: 700;
+  font-size:64px;
+}
+
+@media (max-width:343px) {
+  .content {
+    max-width: 200px;
+  }
+}
+
+.content > p {
+  color: black;
+  opacity: .6;
+}
+
+
+
+.info .info-content p:nth-child(1) {
+  font-size: 40px;
+  font-weight: bold;
+  color: black !important;
+  margin-bottom: -10px;
+}
+
+.info .info-content p:nth-child(2) {
+  font-size: 16px;
+  font-weight: 700;
+  font-weight: lighter;
+  color: black;
+  opacity: .6;
+}

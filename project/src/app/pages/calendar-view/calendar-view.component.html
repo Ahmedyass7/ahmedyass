@@ -1,0 +1,81 @@
+<div class="calendar-container">
+  <div class="calendar-header">
+    <h1>Event Calendar</h1>
+    <div class="calendar-controls">
+      <button class="btn-nav" (click)="previousMonth()">←</button>
+      <h2 class="month-year">{{ currentMonthYear }}</h2>
+      <button class="btn-nav" (click)="nextMonth()">→</button>
+      <button class="btn-today" (click)="goToToday()">Today</button>
+    </div>
+  </div>
+
+  <div class="calendar-grid">
+    <div class="day-header" *ngFor="let dayName of dayNames">
+      {{ dayName }}
+    </div>
+
+    <div
+      class="calendar-day"
+      *ngFor="let calendarDay of calendarDays"
+      [class.other-month]="!calendarDay.isCurrentMonth"
+      [class.today]="calendarDay.isToday"
+      [class.has-events]="calendarDay.events.length > 0"
+      [class.selected]="selectedDate && calendarDay.date.getTime() === selectedDate.getTime()"
+      (click)="selectDay(calendarDay)"
+    >
+      <div class="day-number">{{ calendarDay.day }}</div>
+
+      <div class="event-indicators" *ngIf="calendarDay.events.length > 0">
+        <div
+          class="event-dot"
+          *ngFor="let event of calendarDay.events.slice(0, 3)"
+          [class.completed]="event.is_completed"
+          [title]="event.title"
+        ></div>
+        <span class="more-events" *ngIf="calendarDay.events.length > 3">
+          +{{ calendarDay.events.length - 3 }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event-details-panel" *ngIf="selectedDate">
+    <div class="panel-header">
+      <h3>
+        Events on {{ selectedDate | date: 'MMMM d, yyyy' }}
+      </h3>
+      <button class="btn-close" (click)="selectedDate = null">×</button>
+    </div>
+
+    <div class="events-list">
+      <div
+        class="event-item"
+        *ngFor="let event of selectedDayEvents"
+        [class.completed]="event.is_completed"
+      >
+        <div class="event-time">{{ formatTime(event.start_date) }}</div>
+        <div class="event-content">
+          <h4>{{ event.title }}</h4>
+          <p *ngIf="event.description">{{ event.description }}</p>
+          <div class="event-meta">
+            <span *ngIf="event.location" class="meta-item">
+              📍 {{ event.location }}
+            </span>
+            <span class="meta-item">
+              ⏰ {{ event.reminder_minutes }} min reminder
+            </span>
+          </div>
+        </div>
+        <div class="event-status">
+          <span class="status-badge" [class.completed]="event.is_completed">
+            {{ event.is_completed ? 'Completed' : 'Upcoming' }}
+          </span>
+        </div>
+      </div>
+
+      <div class="empty-events" *ngIf="selectedDayEvents.length === 0">
+        <p>No events scheduled for this day</p>
+      </div>
+    </div>
+  </div>
+</div>

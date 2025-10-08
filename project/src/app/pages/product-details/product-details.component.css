@@ -1,0 +1,45 @@
+
+.color-circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s;
+}
+
+.color-circle.selected {
+  border-color: #000;
+}
+
+
+.btn-like {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  color: #e74c3c; 
+  transition: all 0.3s;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-like:hover {
+  background-color: #e74c3c; 
+  color: #fff; 
+  transform: scale(1.1); 
+  border-color: #e74c3c;
+}
+
+
+.d-flex .btn {
+  margin-right: 0.5rem;
+}
+
+
+.main-img {
+  max-width: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
